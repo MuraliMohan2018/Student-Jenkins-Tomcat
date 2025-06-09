@@ -1,0 +1,52 @@
+def tomcatServerUrl = "http://localhost:8009/manager/text" 
+
+pipeline
+{
+  agent any
+  stages 
+  {
+    //Use this code for inline pipeline script option
+    stage('Code checkout') {
+      steps {
+        //download code from github
+        git branch: 'main', url: 'https://github.com/swasa1329/Student-Jenkins-Tomcat.git'
+      }
+    }
+    stage('Compile')
+    {
+      steps
+      {
+        // Run the maven build
+         bat 'mvn compile' 
+      }
+    }
+    stage('Test')
+    {
+      steps
+      {
+        // Run the maven build
+         bat 'mvn test' 
+      }
+    }
+    stage('Build')
+    {
+      steps
+      {
+        // Run the maven build
+         bat 'mvn package' 
+      }
+    }
+    
+    stage('Deploy')
+    {
+      steps
+      {
+          //deploy war on tomcat server
+          deploy adapters: [tomcat9(url: "${tomcatServerUrl}",
+          credentialsId: 'Tomcat_UID')], 
+          war: 'target/*.war',
+          contextPath: 'pipeline-Student-tomcat-app'
+      }
+    }
+  }
+}
