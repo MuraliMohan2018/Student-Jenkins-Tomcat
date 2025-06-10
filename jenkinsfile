@@ -45,7 +45,7 @@ pipeline
           deploy adapters: [tomcat9(url: "${tomcatServerUrl}",
           credentialsId: 'Tomcat_UID')], 
           war: 'target/*.war',
-          contextPath: 'pipelineSCM-StudentApp-tomcat'
+          contextPath: 'pipelineSCM-StudentApp-tomcat-Email'
       }
     }
   }
