@@ -1,4 +1,4 @@
-def tomcatServerUrl = "http://localhost:8009/manager/text" 
+def tomcatServerUrl = "http://localhost:8181/manager/text" 
 
 pipeline
 {
@@ -43,7 +43,7 @@ pipeline
       {
           //deploy war on tomcat server
           deploy adapters: [tomcat9(url: "${tomcatServerUrl}",
-          credentialsId: 'Tomcat_UID')], 
+          credentialsId: 'fccf27d9-1e92-429c-9b11-9231eb07ffd2')], 
           war: 'target/*.war',
           contextPath: 'pipelineSCM-StudentApp-tomcat-Email'
       }
