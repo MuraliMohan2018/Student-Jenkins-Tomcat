@@ -6,8 +6,10 @@ pipeline
   stages 
   {
     //Use this code for inline pipeline script option
-    stage('Code checkout') {
-      steps {
+    stage('Code checkout')
+   {
+      steps
+     {
         //download code from github
         git branch: 'main', url: 'https://github.com/swasa1329/Student-Jenkins-Tomcat.git'
       }
